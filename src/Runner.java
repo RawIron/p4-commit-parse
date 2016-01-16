@@ -36,7 +36,7 @@ public class Runner {
 					changes = parseP4Output(depot, contents);
 				}
 			} else {
-				String output = executeP4Cofriendsand(depot, settings);
+				String output = executeP4Command(depot, settings);
 				changes = parseP4Output(depot, output);
 			}
 
@@ -73,7 +73,7 @@ public class Runner {
     	return settings;
     }
 
-    private String executeP4Cofriendsand(final Depot depot, final Settings settings) {
+    private String executeP4Command(final Depot depot, final Settings settings) {
 		System.out.println("Create p4 command");
 		SystemCommand p4Changes = new P4SubmittedChanges();
 		p4Changes.optargs("-p " + settings.p4Host());

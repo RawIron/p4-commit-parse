@@ -209,7 +209,7 @@ class P4StatsWriter implements P4ChangesWriter {
             }
         }
 
-        System.out.println("==> PARSING SUfriendsARY");
+        System.out.println("==> PARSING SUMMARY");
         System.out.println("  total changes: " + changes.size());
         System.out.println("  total complete: " + totalComplete);
         System.out.println("  total header complete: " + totalCompleteHeader);

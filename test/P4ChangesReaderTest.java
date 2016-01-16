@@ -9,7 +9,7 @@ public class P4ChangesReaderTest {
         InputStream is = new ByteArrayInputStream(lines.getBytes());
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         P4ChangesReader p4Reader = new LineByLineAndRemoveEmptyLinesReader(br);
-        try { changes = p4Reader.read(); } catch (Exception e) {};
+        try { changes = p4Reader.read(); } catch (Exception e) {}
         return changes;
     }
 

@@ -24,33 +24,37 @@ abstract class ExtractP4BodyPart {
         matcher.reset(line);
         return matcher.lookingAt();
     }
+
     public String[] extractPart(P4Body intoBody, final String[] fromLines) {
-        int i=0;
-        String[] keyValue = fromLines[HEAD].split(KEY_VALUE_DELIMITER,2);
+        String[] keyValue = fromLines[HEAD].split(KEY_VALUE_DELIMITER, 2);
         if (keyValue.length > 1) {
             extract(intoBody, keyValue[VALUE_POS]);
         }
-        for (i=1; i<fromLines.length && !(parser.findMatcher(fromLines[i]) != null); ++i) {
+        int i;
+        for (i = 1; i < fromLines.length && !(parser.findMatcher(fromLines[i]) != null); ++i) {
             extract(intoBody, fromLines[i]);
         }
         return Arrays.copyOfRange(fromLines, i, fromLines.length);
     }
 
     public abstract void extract(P4Body intoBody, final String fromLine);
+
     public abstract String myPattern();
 }
 
 
 class ExtractP4BodyReason extends ExtractP4BodyPart {
     private static final String PATTERN = "^(REASON FOR CHANGE|REASON)";
+
     public ExtractP4BodyReason(ExtractP4Body parser) {
         super(parser);
     }
 
     @Override
     public void extract(P4Body body, final String value) {
-    	body.reasonForChange(value);
+        body.reasonForChange(value);
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -66,8 +70,9 @@ class ExtractP4BodyTfc extends ExtractP4BodyPart {
 
     @Override
     public void extract(P4Body body, final String value) {
-    	body.tfc(value);
+        body.tfc(value);
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -83,8 +88,9 @@ class ExtractP4BodyTaskId extends ExtractP4BodyPart {
 
     @Override
     public void extract(P4Body body, final String value) {
-    	body.taskId(value);
+        body.taskId(value);
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -100,8 +106,9 @@ class ExtractP4BodyReleaseNumber extends ExtractP4BodyPart {
 
     @Override
     public void extract(P4Body body, final String value) {
-    	body.taskId(value);
+        body.taskId(value);
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -110,14 +117,16 @@ class ExtractP4BodyReleaseNumber extends ExtractP4BodyPart {
 
 class ExtractP4BodyImplementation extends ExtractP4BodyPart {
     private static final String PATTERN = "^(IMPLEMENTATION|IMPL)";
+
     public ExtractP4BodyImplementation(ExtractP4Body parser) {
         super(parser);
     }
 
     @Override
     public void extract(P4Body body, final String value) {
-    	body.implementation(value);
+        body.implementation(value);
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -126,14 +135,16 @@ class ExtractP4BodyImplementation extends ExtractP4BodyPart {
 
 class ExtractP4BodyReview extends ExtractP4BodyPart {
     private static final String PATTERN = "^(Review|Reviewers|Reviewed by)";
+
     public ExtractP4BodyReview(ExtractP4Body parser) {
         super(parser);
     }
 
     @Override
     public void extract(P4Body body, final String value) {
-    	body.review(value);
+        body.review(value);
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -142,14 +153,16 @@ class ExtractP4BodyReview extends ExtractP4BodyPart {
 
 class ExtractP4BodyAuthor extends ExtractP4BodyPart {
     private static final String PATTERN = "^Author";
+
     public ExtractP4BodyAuthor(ExtractP4Body parser) {
         super(parser);
     }
 
     @Override
     public void extract(P4Body body, final String value) {
-    	body.author(value);
+        body.author(value);
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -158,14 +171,16 @@ class ExtractP4BodyAuthor extends ExtractP4BodyPart {
 
 class ExtractP4BodyObserver extends ExtractP4BodyPart {
     private static final String PATTERN = "^Observer";
+
     public ExtractP4BodyObserver(ExtractP4Body parser) {
         super(parser);
     }
 
     @Override
     public void extract(P4Body body, final String value) {
-    	body.observer(value);
+        body.observer(value);
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -174,14 +189,16 @@ class ExtractP4BodyObserver extends ExtractP4BodyPart {
 
 class ExtractP4BodyBuildFix extends ExtractP4BodyPart {
     private static final String PATTERN = "^Build Fix Approved";
+
     public ExtractP4BodyBuildFix(ExtractP4Body parser) {
         super(parser);
     }
 
     @Override
     public void extract(P4Body body, final String value) {
-    	body.buildFixApproved(value.trim());
+        body.buildFixApproved(value.trim());
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -190,6 +207,7 @@ class ExtractP4BodyBuildFix extends ExtractP4BodyPart {
 
 class ExtractP4BodyDbchange extends ExtractP4BodyPart {
     private static final String PATTERN = "^(DB CHANGE|DB)";
+
     public ExtractP4BodyDbchange(ExtractP4Body parser) {
         super(parser);
     }
@@ -197,11 +215,12 @@ class ExtractP4BodyDbchange extends ExtractP4BodyPart {
     @Override
     public void extract(P4Body body, final String value) {
         if (value.trim().matches(YES_PATTERN)) {
-        	body.dbChange(true);
+            body.dbChange(true);
         } else if (value.trim().matches(NO_PATTERN)) {
-        	body.dbChange(false);
+            body.dbChange(false);
         }
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -210,14 +229,16 @@ class ExtractP4BodyDbchange extends ExtractP4BodyPart {
 
 class ExtractP4BodyNotifyTeam extends ExtractP4BodyPart {
     private static final String PATTERN = "^NOTIFY:";
+
     public ExtractP4BodyNotifyTeam(ExtractP4Body parser) {
         super(parser);
     }
 
     @Override
     public void extract(P4Body body, final String value) {
-    	body.notifyTeam(value.trim());
+        body.notifyTeam(value.trim());
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -226,6 +247,7 @@ class ExtractP4BodyNotifyTeam extends ExtractP4BodyPart {
 
 class ExtractP4BodyNotifyChoice extends ExtractP4BodyPart {
     private static final String PATTERN = "^NOTIFY .*Y/N";
+
     public ExtractP4BodyNotifyChoice(ExtractP4Body parser) {
         super(parser);
     }
@@ -233,11 +255,12 @@ class ExtractP4BodyNotifyChoice extends ExtractP4BodyPart {
     @Override
     public void extract(P4Body body, final String value) {
         if (value.trim().matches(YES_PATTERN)) {
-        	body.notifyChoice(true);
+            body.notifyChoice(true);
         } else if (value.trim().matches(NO_PATTERN)) {
-        	body.notifyChoice(false);
+            body.notifyChoice(false);
         }
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -246,6 +269,7 @@ class ExtractP4BodyNotifyChoice extends ExtractP4BodyPart {
 
 class ExtractP4BodyReleaseNote extends ExtractP4BodyPart {
     private static final String PATTERN = "^RELEASE NOTE";
+
     public ExtractP4BodyReleaseNote(ExtractP4Body parser) {
         super(parser);
     }
@@ -253,11 +277,12 @@ class ExtractP4BodyReleaseNote extends ExtractP4BodyPart {
     @Override
     public void extract(P4Body body, final String value) {
         if (value.trim().matches(YES_PATTERN)) {
-        	body.releaseNote(true);
+            body.releaseNote(true);
         } else if (value.trim().matches(NO_PATTERN)) {
-        	body.releaseNote(false);
+            body.releaseNote(false);
         }
     }
+
     @Override
     public String myPattern() {
         return PATTERN;
@@ -288,7 +313,7 @@ public class ExtractP4Body {
     }
 
     public ExtractP4BodyPart findMatcher(final String line) {
-        for (int i=0; i<matchers.size(); ++i) {
+        for (int i = 0; i < matchers.size(); ++i) {
             if (matchers.get(i).matched(line)) {
                 return matchers.get(i);
             }
