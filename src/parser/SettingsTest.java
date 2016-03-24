@@ -1,6 +1,9 @@
+package parser;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
 import java.util.Properties;
 
 
@@ -48,15 +51,15 @@ public class SettingsTest {
 			settings = topic(new TodayIs27042013(), 4);
 		} catch (SettingsInvalidException e) { e.printStackTrace(); }
 
-		assertEquals(1000112, settings.rangeBegin());
-		assertEquals(1000214, settings.rangeEnd());
-		assertEquals("security", settings.depots().get(0).project());
-		assertEquals("//depot/projects/security/ml/src/main/java/com/domain/kernel/",
+		Assert.assertEquals(1000112, settings.rangeBegin());
+		Assert.assertEquals(1000214, settings.rangeEnd());
+		Assert.assertEquals("security", settings.depots().get(0).project());
+		Assert.assertEquals("//depot/projects/security/ml/src/main/java/com/domain/kernel/",
 					 settings.depots().get(0).path().trim());
-		assertEquals("/tmp/", settings.workDirectory());
-		assertTrue(settings.parseOnly());
-		assertEquals("ignoreMe", settings.ignoreNames()[0]);
-		assertEquals("meToo", settings.ignoreNames()[1]);
+		Assert.assertEquals("/tmp/", settings.workDirectory());
+		Assert.assertTrue(settings.parseOnly());
+		Assert.assertEquals("ignoreMe", settings.ignoreNames()[0]);
+		Assert.assertEquals("meToo", settings.ignoreNames()[1]);
 	}
 
 	@Test
@@ -68,7 +71,7 @@ public class SettingsTest {
 		} catch (SettingsInvalidException e) {
 			message = e.getLocalizedMessage();
 		}
-		assertTrue(message.startsWith("RANGE End is not a valid number"));
+		Assert.assertTrue(message.startsWith("RANGE End is not a valid number"));
 	}
 
 	@Test
@@ -80,7 +83,7 @@ public class SettingsTest {
 		} catch (SettingsInvalidException e) {
 			message = e.getLocalizedMessage();
 		}
-		assertTrue(message.startsWith("RANGE expects two numbers separated by a comma"));
+		Assert.assertTrue(message.startsWith("RANGE expects two numbers separated by a comma"));
 	}
 
 	@Test
@@ -92,7 +95,7 @@ public class SettingsTest {
 		} catch (SettingsInvalidException e) {
 			message = e.getLocalizedMessage();
 		}
-		assertTrue(message.startsWith("DEPOT should have a project and a path separated by a comma"));
+		Assert.assertTrue(message.startsWith("DEPOT should have a project and a path separated by a comma"));
 	}
 
 	@Test
@@ -104,7 +107,7 @@ public class SettingsTest {
 		} catch (SettingsInvalidException e) {
 			message = e.getLocalizedMessage();
 		}
-		assertTrue(message.startsWith("DEPOT should have a project"));
+		Assert.assertTrue(message.startsWith("DEPOT should have a project"));
 	}
 
 	@Test
@@ -116,6 +119,6 @@ public class SettingsTest {
 		} catch (SettingsInvalidException e) {
 			message = e.getLocalizedMessage();
 		}
-		assertTrue(message.startsWith("DEPOT should have a project"));
+		Assert.assertTrue(message.startsWith("DEPOT should have a project"));
 	}
 }

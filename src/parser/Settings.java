@@ -1,3 +1,5 @@
+package parser;
+
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Calendar;
@@ -228,7 +230,7 @@ class SettingsReader {
 		for (Depot depot : settings.depots()) {
 			if (!isDepotAccessable(depot.path())) {
 				depot.skip(true);
-				String message = "Depot is not accessable " + depot;
+				String message = "parser.Depot is not accessable " + depot;
 				String action = " Please check the path to the depot.";
 				throw new SettingsInvalidException(message + action);
 			}

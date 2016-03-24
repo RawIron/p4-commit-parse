@@ -1,3 +1,10 @@
+package parser;
+
+import parser.ExtractP4Body;
+import parser.ExtractP4Changes;
+import parser.MaxPatternMismatchReachedException;
+import parser.P4Change;
+
 import java.util.ArrayList;
 
 
@@ -27,7 +34,7 @@ public class Parser {
         try {
             changes = extractor.parse(contents);
         } catch (MaxPatternMismatchReachedException e) {}
-        //P4ChangesWriter writer = new P4SimpleWriter();
+        //parser.P4ChangesWriter writer = new parser.P4SimpleWriter();
         //writer.write(changes);
     }
 

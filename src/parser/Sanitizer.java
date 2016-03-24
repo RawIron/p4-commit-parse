@@ -1,3 +1,5 @@
+package parser;
+
 public class Sanitizer {
     private static final String MULTIPLE_SPACES = "[ \\t\\x0B\\f\\r]";
     private static final String NEWLINES = "[\\n\\x0B\\f\\r]";

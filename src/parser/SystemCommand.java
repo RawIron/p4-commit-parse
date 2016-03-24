@@ -1,3 +1,5 @@
+package parser;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -69,17 +71,6 @@ class Echo extends SystemCommand {
     private static final String COMMAND_ARGS = "does it work";
 
     public Echo() {
-    	super(COMMAND_NAME, COMMAND_OPTARGS, COMMAND_ARGS);
-    }
-}
-
-class P4Version extends SystemCommand {
-	// p4 -V
-    private static final String COMMAND_NAME = "p4";
-    private static final String COMMAND_OPTARGS = "-V";
-    private static final String COMMAND_ARGS = "";
-
-    public P4Version() {
     	super(COMMAND_NAME, COMMAND_OPTARGS, COMMAND_ARGS);
     }
 }

@@ -1,6 +1,12 @@
+package parser;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import parser.PropertiesLoadException;
+import parser.PropertiesReader;
+import parser.PropertiesReaderFilePath;
+
 import java.util.Properties;
 
 
@@ -16,19 +22,19 @@ public class PropertiesReaderTest {
 
 	@Test
 	public void test_readSingleValue() {
-		assertEquals("ignoreMe, meToo", topic().getProperty("IGNORE.NAMES"));
+		Assert.assertEquals("ignoreMe, meToo", topic().getProperty("IGNORE.NAMES"));
 	}
 
 	@Test
 	public void test_readDateValue() {
-		assertEquals("1000112,1000214", topic().getProperty("RANGE.20130427"));
+		Assert.assertEquals("1000112,1000214", topic().getProperty("RANGE.20130427"));
 	}
 
 	@Test
 	public void test_readIndexedValue() {
 		int index = 1;
 		String key = "DEPOT.PATH." + index;
-		assertEquals("trader,", topic().getProperty(key).trim());
+		Assert.assertEquals("trader,", topic().getProperty(key).trim());
 	}
 
 	@Test
@@ -39,6 +45,6 @@ public class PropertiesReaderTest {
 		} catch (NumberFormatException e) {
 			caughtException = true;
 		}
-		assertTrue(caughtException);
+		Assert.assertTrue(caughtException);
 	}
 }

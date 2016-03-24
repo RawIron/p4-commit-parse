@@ -1,3 +1,5 @@
+package parser;
+
 class P4Body {
     private static final int MANDATORY_FIELDS = 6;
     private static final int TOTAL_FIELDS = 10;

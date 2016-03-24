@@ -1,6 +1,6 @@
+package parser;
+
 import java.util.List;
-import java.io.BufferedWriter;
-import java.io.IOException;
 
 
 public interface P4ChangesWriter {
