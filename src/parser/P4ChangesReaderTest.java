@@ -22,7 +22,7 @@ public class P4ChangesReaderTest {
     public void test_anyStringBecomesLine() {
         String str = "This is a String ~ GoGoGo";
         String result = topic(str);
-        Assert.assertEquals(str+System.getProperty("line.separator"), result);
+        assertEquals(str+System.getProperty("line.separator"), result);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class P4ChangesReaderTest {
         String line1 = "This is a String ~ GoGoGo" + System.getProperty("line.separator");
         String line2 = "And there is another line";
         String result = topic((line1+line2));
-        Assert.assertEquals(line1+line2+System.getProperty("line.separator"), result);
+        assertEquals(line1+line2+System.getProperty("line.separator"), result);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class P4ChangesReaderTest {
         String line1 = "This    is a    String   ~     GoGoGo" + System.getProperty("line.separator");
         String expected = "This    is a    String   ~     GoGoGo" + System.getProperty("line.separator");
         String result = topic(line1);
-        Assert.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class P4ChangesReaderTest {
         String line1 = "       This is a String ~ GoGoGo   " + System.getProperty("line.separator");
         String expected = "This is a String ~ GoGoGo" + System.getProperty("line.separator");
         String result = topic(line1);
-        Assert.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
 
     @Test
@@ -61,6 +61,6 @@ public class P4ChangesReaderTest {
         String expected = "This is a String ~ GoGoGo" + System.getProperty("line.separator")
                           + "This is a String ~ GoGoGo" + System.getProperty("line.separator");
         String result = topic(lines);
-        Assert.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
 }

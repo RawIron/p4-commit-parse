@@ -12,6 +12,6 @@ public class ExecTest extends TestCase {
         SystemCommand p4Version = new P4Version();
         Exec exec = new Exec();
         exec.execute(p4Version);
-        Assert.assertTrue(exec.stdout().startsWith("Perforce"));
+        assertTrue(exec.stdout().startsWith("Perforce"));
     }
 }
