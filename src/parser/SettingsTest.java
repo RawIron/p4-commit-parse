@@ -53,7 +53,7 @@ public class SettingsTest {
 		assertEquals(1000112, settings.rangeBegin());
 		assertEquals(1000214, settings.rangeEnd());
 		assertEquals("security", settings.depots().get(0).project());
-		assertEquals("//depot/projects/security/ml/src/main/java/com/domain/kernel/",
+		assertEquals("//depot/projects/services/security/ml/src/main/java/com/domain/kernel/",
 					 settings.depots().get(0).path().trim());
 		assertEquals("/tmp/", settings.workDirectory());
 		assertTrue(settings.parseOnly());

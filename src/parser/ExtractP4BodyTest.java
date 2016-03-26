@@ -1,6 +1,8 @@
 package parser;
 
 import static org.junit.Assert.*;
+
+import org.apache.xmlbeans.SystemProperties;
 import org.junit.Test;
 
 import parser.ExtractP4Body;
@@ -14,12 +16,20 @@ public class ExtractP4BodyTest {
         ExtractP4Body extractor = new ExtractP4Body();
         return extractor;
     }
+
     private P4Body topic(String rawBody) {
         P4Body body = null;
         try {
             body = extractor().parse(rawBody);
         } catch (MaxPatternMismatchReachedException e) {}
         return body;
+    }
+
+    @Test
+    public void test_lineSeparator() {
+        String actual = "word" + System.getProperty("line.separator");
+        String expected = "word\n";
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -61,10 +71,9 @@ public class ExtractP4BodyTest {
     public void test_twoTaskid() {
         String firstTask = "TASK ID: first task" + System.getProperty("line.separator");
         String secondTask = "TASK ID: second task" + System.getProperty("line.separator");
-        String expected = "first task; " + " second task;";
+        String expected = "first task" + " second task";
         P4Body body = topic(firstTask + secondTask);
-        String result = Sanitizer.TranslateNewlineIntoPunctation(body.taskId());
-        assertEquals(expected.trim(), result.trim());
+        assertEquals(expected.trim(), body.taskId().trim());
     }
 
     @Test
