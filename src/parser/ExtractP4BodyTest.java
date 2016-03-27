@@ -1,8 +1,6 @@
 package parser;
 
 import static org.junit.Assert.*;
-
-import org.apache.xmlbeans.SystemProperties;
 import org.junit.Test;
 
 import parser.ExtractP4Body;
