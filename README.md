@@ -43,8 +43,18 @@ Add a new `RANGE` entry with today's date.
 Changes committed by users listed in `IGNORE.NAMES` will not be parsed.
 
 #### Package to *jar* and run *jar*
+```
+mvn package
+java -jar parser.jar
+```
 
 #### Using Maven
+```
+# compile the classes first
+mvn compile
+# run main
+mvn exec:java -Dexec.mainClass="parser.Runner"
+```
 
 #### Tests
 to run all tests
