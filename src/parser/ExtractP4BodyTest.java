@@ -81,30 +81,27 @@ public class ExtractP4BodyTest {
         String firstTask = "TASK ID: first task" + System.getProperty("line.separator");
         String firstTfc = "TFC: some tfc" + System.getProperty("line.separator");
         String secondTask = "TASK ID: second task" + System.getProperty("line.separator");
-        String expected = "first task; " + " second task;";
+        String expected = "first task" + " second task";
         P4Body body = topic(firstTask + firstTfc + secondTask);
-        String result = Sanitizer.TranslateNewlineIntoPunctation(body.taskId());
-        assertEquals(expected.trim(), result.trim());
+        assertEquals(expected.trim(), body.taskId().trim());
     }
 
     @Test
     public void test_twoTaskidOnSameLine() {
         String firstTask = "TASK ID: first task";
         String secondTask = "TASK ID: second task" + System.getProperty("line.separator");
-        String expected = "first task" + "TASK ID: second task;";
+        String expected = "first task" + "TASK ID: second task";
         P4Body body = topic(firstTask + secondTask);
-        String result = Sanitizer.TranslateNewlineIntoPunctation(body.taskId());
-        assertEquals(expected.trim(), result.trim());
+        assertEquals(expected.trim(), body.taskId().trim());
     }
 
     @Test
     public void test_oneTaskidFollowedByNewSignature() {
         String firstTask = "TASK ID: first task" + System.getProperty("line.separator");
         String firstNew = "VERY NEW: this was just added" + System.getProperty("line.separator");
-        String expected = "first task; " + "VERY NEW: this was just added;";
+        String expected = "first task" + "VERY NEW: this was just added";
         P4Body body = topic(firstTask + firstNew);
-        String result = Sanitizer.TranslateNewlineIntoPunctation(body.taskId());
-        assertEquals(expected.trim(), result.trim());
+        assertEquals(expected.trim(), body.taskId().trim());
     }
 
     @Test
