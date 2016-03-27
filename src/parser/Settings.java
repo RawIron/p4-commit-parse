@@ -294,7 +294,6 @@ class SettingsReader {
 		settings.workDirectory(workdirectoryProperty);
 	}
 
-
 	private void fillParseOnly() throws SettingsInvalidException {
 		String parseOnlyProperty = properties.getProperty("PARSE.ONLY");
 		if (parseOnlyProperty == null || parseOnlyProperty.trim().isEmpty()) {
@@ -303,7 +302,6 @@ class SettingsReader {
 			settings.parseOnly(true);
 		}
 	}
-
 
 	private int isValidPositiveNumber(final String number) {
 		int result;
