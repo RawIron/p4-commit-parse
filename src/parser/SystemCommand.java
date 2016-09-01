@@ -13,16 +13,15 @@ public abstract class SystemCommand {
 
     public SystemCommand(final String commandName,
                          String commandOptargs,
-                         String commandArgs)
-    {
-    	this.name = commandName;
-    	this.optargs = commandOptargs;
-    	this.args = commandArgs;
+                         String commandArgs) {
+        this.name = commandName;
+        this.optargs = commandOptargs;
+        this.args = commandArgs;
     }
 
 
     public String command() {
-    	build();
+        build();
         String commandLine = "";
         for (String word : command) {
             commandLine += " " + word;
@@ -39,49 +38,53 @@ public abstract class SystemCommand {
 
 
     public String name() {
-    	return name;
+        return name;
     }
+
     public String optargs() {
-    	return optargs;
+        return optargs;
     }
+
     public String args() {
-    	return args;
+        return args;
     }
+
     public void optargs(final String optargs) {
-    	if (this.optargs.trim().isEmpty()) {
-    		this.optargs = optargs.trim();
-    	} else {
-    		this.optargs = optargs + " " + this.optargs;
-    	}
+        if (this.optargs.trim().isEmpty()) {
+            this.optargs = optargs.trim();
+        } else {
+            this.optargs = optargs + " " + this.optargs;
+        }
     }
+
     public void args(final String args) {
-    	if (this.args.trim().isEmpty()) {
-    		this.args = args.trim();
-    	} else {
-    		this.args = args + " " + this.args;
-    	}
+        if (this.args.trim().isEmpty()) {
+            this.args = args.trim();
+        } else {
+            this.args = args + " " + this.args;
+        }
     }
 }
 
 
 class Echo extends SystemCommand {
-	// echo -n does it work
+    // echo -n does it work
     private static final String COMMAND_NAME = "echo";
     private static final String COMMAND_OPTARGS = "-n";
     private static final String COMMAND_ARGS = "does it work";
 
     public Echo() {
-    	super(COMMAND_NAME, COMMAND_OPTARGS, COMMAND_ARGS);
+        super(COMMAND_NAME, COMMAND_OPTARGS, COMMAND_ARGS);
     }
 }
 
 class P4SubmittedChanges extends SystemCommand {
-	// P4.exe -p your.perforce.com:1555 changes -l -s submitted //depot/projects/services/@fromCL,toCL
+    // P4.exe -p your.perforce.com:1555 changes -l -s submitted //depot/projects/services/@fromCL,toCL
     private static final String COMMAND_NAME = "p4.exe";
     private static final String COMMAND_OPTARGS = "changes -l -s submitted";
     private static final String COMMAND_ARGS = "";
 
     public P4SubmittedChanges() {
-    	super(COMMAND_NAME, COMMAND_OPTARGS, COMMAND_ARGS);
+        super(COMMAND_NAME, COMMAND_OPTARGS, COMMAND_ARGS);
     }
 }
