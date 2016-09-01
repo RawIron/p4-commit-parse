@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class PropertiesReaderTest {
 	private Properties topic() {
-		PropertiesReader reader = new PropertiesReaderFilePath(true);
+		PropertiesReader reader = new PropertiesReaderClassPath(true);
 		Properties config = null;
 		try {
 			config = reader.read();

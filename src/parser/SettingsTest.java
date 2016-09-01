@@ -31,7 +31,7 @@ class TodayIs30042013 extends CalendarAndClock {
 public class SettingsTest {
 
 	private Settings topic(CalendarAndClock t, int index) throws SettingsInvalidException {
-		PropertiesReaderFilePath preader = new PropertiesReaderFilePath(true);
+		PropertiesReaderClassPath preader = new PropertiesReaderClassPath(true);
 		Properties properties = null;
 		try {
 			properties = preader.read();

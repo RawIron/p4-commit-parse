@@ -14,7 +14,6 @@ class PropertiesLoadException extends Exception {
 
 
 public abstract class PropertiesReader {
-	protected static final String PROPERTY_FILE_PATH = "/home/achtmhz/workspace/p4-commit-parse/";
 	private static final String PROPERTY_FILE_NAME = "p4CL.properties";
 	private static final String PROPERTY_TEST_FILE_NAME = "p4CLTest.properties";
 
@@ -46,6 +45,8 @@ public abstract class PropertiesReader {
 
 
 class PropertiesReaderFilePath extends PropertiesReader {
+	protected static final String PROPERTY_FILE_PATH = "/home/achtmhz/workspace/p4-commit-parse/";
+
 	public PropertiesReaderFilePath() {
 		super();
 	}
