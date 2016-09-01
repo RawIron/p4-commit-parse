@@ -1,5 +1,8 @@
 ## Parse commit logs from Perforce
 
+[![Build Status](https://travis-ci.org/RawIron/p4-commit-parse.svg)](https://travis-ci.org/RawIron/p4-commit-parse)
+
+
 quick tool hack which allows to parse the output of the `p4 changes -l` command of the  Perforce Client.
 
 the tool extracts commited changes from a depot with
@@ -62,7 +65,7 @@ to run all tests
 mvn test
 ```
 
-## Do Better
+## ToDo
 
 * use Dependency Injection
 * coverage
